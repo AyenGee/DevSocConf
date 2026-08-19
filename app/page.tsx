@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { event } from "@/lib/brand";
 
 export default function HomePage() {
@@ -15,6 +16,9 @@ export default function HomePage() {
             If you received an invitation email, use the confirmation link from that email —
             this page itself isn't a registration form.
           </p>
+          <Link href="/scan" className="btn-secondary" style={{ display: "block", textDecoration: "none", textAlign: "center", marginTop: 20 }}>
+            Open door scanner
+          </Link>
         </div>
       </div>
     </div>
