@@ -1,0 +1,244 @@
+:root {
+  --navy: #0a1f44;
+  --navy-dark: #071630;
+  --white: #ffffff;
+  --gray: #6b7280;
+  --gray-light: #e5e7eb;
+  --gray-bg: #f3f4f6;
+  --lime: #b7f03a;
+  --lime-dark: #94cc1e;
+
+  --font-display: "Space Grotesk", "Segoe UI", Arial, sans-serif;
+  --font-body: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--navy);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: var(--navy);
+  border-bottom: 4px solid var(--lime);
+  padding: 28px 20px;
+  text-align: center;
+}
+
+.header__eyebrow {
+  color: var(--lime);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0 0 6px;
+}
+
+.header__title {
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.header__meta {
+  color: var(--gray-light);
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 16px 60px;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--gray-light);
+  border-radius: 12px;
+  padding: 28px;
+  max-width: 460px;
+  width: 100%;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.field input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--gray-light);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: var(--font-body);
+  color: var(--navy);
+}
+
+.field input:focus {
+  outline: 2px solid var(--lime-dark);
+  outline-offset: 1px;
+  border-color: var(--lime-dark);
+}
+
+.field-hint {
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 5px;
+}
+
+.btn-primary {
+  width: 100%;
+  background: var(--lime);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 13px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.btn-primary:hover {
+  background: var(--lime-dark);
+}
+
+.btn-primary:disabled {
+  background: var(--gray-light);
+  color: var(--gray);
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  width: 100%;
+  background: transparent;
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 11px 20px;
+  border: 1px solid var(--gray-light);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-family: var(--font-body);
+}
+
+.spots-banner {
+  background: var(--gray-bg);
+  border-radius: 8px;
+  padding: 10px 14px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.state-message {
+  text-align: center;
+}
+
+.state-message__icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.state-message__title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.state-message__body {
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.error-text {
+  color: #b42318;
+  font-size: 13px;
+  background: #fef3f2;
+  border: 1px solid #fecdca;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+}
+
+/* Scanner page */
+.scanner-wrap {
+  max-width: 480px;
+  width: 100%;
+}
+
+.scanner-counter {
+  text-align: center;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+#qr-reader {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--gray-light);
+}
+
+.scan-result {
+  margin-top: 20px;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.scan-result--admit {
+  background: #eefbe0;
+  border: 2px solid var(--lime-dark);
+}
+
+.scan-result--reject {
+  background: #fef3f2;
+  border: 2px solid #b42318;
+}
+
+.scan-result__label {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.scan-result__sub {
+  font-size: 14px;
+  color: var(--gray);
+}
