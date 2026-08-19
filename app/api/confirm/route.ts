@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
 
   if (!WITS_EMAIL_PATTERN.test(witsEmail.trim())) {
     return NextResponse.json(
-      { error: "Please use a valid @students.wits.ac.za email address." },
+      { error: "Please enter your Wits student email address." },
       { status: 400 }
     );
   }

@@ -59,7 +59,7 @@ export default function ConfirmForm({ token }: { token: string }) {
         return;
       }
       if (!/@students\.wits\.ac\.za$/i.test(witsEmail.trim())) {
-        setFormError("Please use a valid @students.wits.ac.za email address.");
+        setFormError("Please use a valid Wits student email address.");
         return;
       }
     }
@@ -191,7 +191,7 @@ export default function ConfirmForm({ token }: { token: string }) {
           type="email"
           value={witsEmail}
           onChange={(e) => setWitsEmail(e.target.value)}
-          placeholder="jane.dlamini@students.wits.ac.za"
+          placeholder=""
         />
         <p className="field-hint">
           Your ticket QR code will appear right here once you confirm — bookmark this exact
