@@ -19,8 +19,8 @@ export const brand = {
 
 export const event = {
   org: "Wits Developer Society",
-  name: process.env.EVENT_NAME ?? "AI & Beyond Tech Conference 2026",
-  dateLabel: process.env.EVENT_DATE_LABEL ?? "Saturday, 29 August 2026 · 11:00 – 15:00",
-  venue: process.env.EVENT_VENUE ?? "Wits Main Campus, WSS4",
-  spotsTotal: Number(process.env.EVENT_SPOTS_TOTAL ?? 105),
+  name: process.env.EVENT_NAME || "AI & Beyond Tech Conference 2026",
+  dateLabel: process.env.EVENT_DATE_LABEL || "Saturday, 29 August 2026 · 11:00 – 15:00",
+  venue: process.env.EVENT_VENUE || "Wits Main Campus, WSS4",
+  spotsTotal: Number(process.env.EVENT_SPOTS_TOTAL || 105),
 };
