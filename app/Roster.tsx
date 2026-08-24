@@ -22,7 +22,7 @@ export default function Roster() {
 
   async function load() {
     try {
-      const res = await fetch("/api/roster");
+      const res = await fetch("/api/roster", { cache: "no-store" });
       const json = await res.json();
       setData(json);
     } catch {

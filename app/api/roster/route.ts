@@ -43,11 +43,18 @@ export async function GET() {
 
   const missingStudentNumber = totalConfirmed - attendees.length;
 
-  return NextResponse.json({
-    confirmedCount: totalConfirmed,
-    checkedInCount: (rows ?? []).filter((r) => r.checked_in_at !== null).length,
-    spotsTotal: state?.spots_total ?? null,
-    missingStudentNumber,
-    attendees,
-  });
+  return NextResponse.json(
+    {
+      confirmedCount: totalConfirmed,
+      checkedInCount: (rows ?? []).filter((r) => r.checked_in_at !== null).length,
+      spotsTotal: state?.spots_total ?? null,
+      missingStudentNumber,
+      attendees,
+    },
+    {
+      headers: {
+        "Cache-Control": "no-store, no-cache, must-revalidate",
+      },
+    }
+  );
 }
