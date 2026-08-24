@@ -194,7 +194,72 @@ a {
   margin-bottom: 16px;
 }
 
-/* Scanner page */
+/* Roster */
+.roster-summary {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.roster-stat {
+  flex: 1;
+  text-align: center;
+}
+
+.roster-stat__number {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.roster-stat__label {
+  font-size: 11px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.roster-list {
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.roster-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 4px;
+  border-bottom: 1px solid var(--gray-bg);
+  font-size: 14px;
+}
+
+.roster-item__id {
+  font-family: monospace;
+  color: var(--navy);
+}
+
+.roster-tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.roster-tag--checked {
+  background: var(--lime);
+  color: var(--navy);
+}
+
+.roster-tag--pending {
+  background: var(--gray-bg);
+  color: var(--gray);
+}
 .scanner-wrap {
   max-width: 480px;
   width: 100%;
