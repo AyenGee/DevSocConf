@@ -6,6 +6,7 @@ type RosterData = {
   confirmedCount: number;
   checkedInCount: number;
   spotsTotal: number | null;
+  missingStudentNumber: number;
   attendees: { studentNumber: string; checkedIn: boolean }[];
 };
 
@@ -63,6 +64,12 @@ export default function Roster() {
       </div>
 
       <div className="roster-list">
+        {data.missingStudentNumber > 0 && (
+          <p className="field-hint" style={{ marginBottom: 10 }}>
+            {data.missingStudentNumber} confirmed {data.missingStudentNumber === 1 ? "registration is" : "registrations are"} missing
+            a student number and won't appear in the list below — worth checking those directly in Supabase.
+          </p>
+        )}
         {data.attendees.length === 0 && (
           <p className="field-hint">No confirmed attendees yet.</p>
         )}

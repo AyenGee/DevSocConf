@@ -27,6 +27,8 @@ export async function GET() {
     .eq("id", 1)
     .maybeSingle();
 
+  const totalConfirmed = rows?.length ?? 0;
+
   const attendees = (rows ?? [])
     .filter((r) => !!r.student_number)
     .map((r) => ({
@@ -39,10 +41,13 @@ export async function GET() {
       return a.studentNumber.localeCompare(b.studentNumber);
     });
 
+  const missingStudentNumber = totalConfirmed - attendees.length;
+
   return NextResponse.json({
-    confirmedCount: attendees.length,
-    checkedInCount: attendees.filter((a) => a.checkedIn).length,
+    confirmedCount: totalConfirmed,
+    checkedInCount: (rows ?? []).filter((r) => r.checked_in_at !== null).length,
     spotsTotal: state?.spots_total ?? null,
+    missingStudentNumber,
     attendees,
   });
 }
