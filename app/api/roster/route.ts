@@ -10,22 +10,36 @@ export const dynamic = "force-dynamic";
 // full name would be, while still being useful for door-side lookup.
 //
 // IMPORTANT: the headline counts (confirmedCount, checkedInCount,
-// spotsTotal) are pulled directly from v_event_summary and scan_attempts —
-// NOT derived from the attendees list below. This is deliberate: the list
-// only shows rows that have a student_number to display, but the counts
-// must always reflect the true totals regardless of that. Keeping them
-// as separate queries means a display quirk in the list can never again
-// silently throw off the numbers at the top of the page.
+// spotsTotal) come from dedicated exact-count queries against
+// registrations/event_state/scan_attempts — NOT derived from the
+// attendees list below. This is deliberate: the list only shows rows
+// that have a student_number to display, but the counts must always
+// reflect the true totals regardless of that. Keeping them as separate
+// queries means a display quirk in the list can never again silently
+// throw off the numbers at the top of the page.
 export async function GET() {
   const supabase = getSupabaseServerClient();
 
-  const { data: summary, error: summaryErr } = await supabase
-    .from("v_event_summary")
-    .select("spots_total, confirmed_count")
-    .single();
+  // Counted directly off registrations (not the v_event_summary view) so
+  // there's no dependency on the view's definition staying in sync with
+  // the table in whatever environment this is running against.
+  const { count: confirmedCount, error: confirmedErr } = await supabase
+    .from("registrations")
+    .select("id", { count: "exact", head: true })
+    .eq("status", "CONFIRMED");
 
-  if (summaryErr) {
-    return NextResponse.json({ error: "Could not load event summary." }, { status: 500 });
+  if (confirmedErr) {
+    return NextResponse.json({ error: "Could not load confirmed count." }, { status: 500 });
+  }
+
+  const { data: state, error: stateErr } = await supabase
+    .from("event_state")
+    .select("spots_total")
+    .eq("id", 1)
+    .maybeSingle();
+
+  if (stateErr) {
+    return NextResponse.json({ error: "Could not load event state." }, { status: 500 });
   }
 
   const { count: checkedInCount, error: scanErr } = await supabase
@@ -61,9 +75,9 @@ export async function GET() {
 
   return NextResponse.json(
     {
-      confirmedCount: summary.confirmed_count,
+      confirmedCount: confirmedCount ?? 0,
       checkedInCount: checkedInCount ?? 0,
-      spotsTotal: summary.spots_total,
+      spotsTotal: state?.spots_total ?? null,
       attendees,
     },
     {

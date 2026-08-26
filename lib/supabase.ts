@@ -15,5 +15,11 @@ export function getSupabaseServerClient() {
 
   return createClient(url, serviceKey, {
     auth: { persistSession: false },
+    // Force every request this client makes to bypass any HTTP-level
+    // caching (Vercel's fetch Data Cache, intermediate proxies, etc).
+    // The roster endpoint needs a true live read on every call.
+    global: {
+      fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }),
+    },
   });
 }
