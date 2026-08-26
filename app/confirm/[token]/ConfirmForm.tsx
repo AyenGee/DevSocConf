@@ -1,7 +1,7 @@
 "use client";
-
+ 
 import { useEffect, useRef, useState } from "react";
-
+ 
 type LoadState =
   | { phase: "loading" }
   | { phase: "error"; message: string }
