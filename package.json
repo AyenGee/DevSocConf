@@ -8,6 +8,7 @@
     "start": "next start",
     "seed": "tsx scripts/seed-batch1.ts",
     "export:batch2": "tsx scripts/export-batch2.ts",
+    "add:guests": "tsx scripts/add-guest-list.ts",
     "export:tickets": "tsx scripts/export-tickets.ts"
   },
   "dependencies": {

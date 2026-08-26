@@ -41,7 +41,7 @@ export default function ConfirmForm({ token }: { token: string }) {
           setState({ phase: "resolved-expired" });
           return;
         }
-        if (data.batch === "BATCH_2" && (data.spotsLeft ?? 0) <= 0) {
+        if (typeof data.spotsLeft === "number" && data.spotsLeft <= 0) {
           setState({ phase: "full" });
           return;
         }
@@ -59,7 +59,7 @@ export default function ConfirmForm({ token }: { token: string }) {
         return;
       }
       if (!/@students\.wits\.ac\.za$/i.test(witsEmail.trim())) {
-        setFormError("Please use a valid Wits student email address.");
+        setFormError("Please enter your Wits student email address.");
         return;
       }
     }
@@ -156,7 +156,7 @@ export default function ConfirmForm({ token }: { token: string }) {
   // phase === "ready" — show the form
   return (
     <div className="card">
-      {state.batch === "BATCH_2" && state.spotsLeft !== null && (
+      {state.spotsLeft !== null && (
         <div className="spots-banner">
           {state.spotsLeft} spot{state.spotsLeft === 1 ? "" : "s"} remaining
         </div>
